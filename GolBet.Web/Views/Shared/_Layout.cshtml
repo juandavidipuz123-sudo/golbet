@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GolBet.Web</title>
+    <title>@ViewData["Title"] - GolBet</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GolBet.Web.styles.css" asp-append-version="true" />
@@ -16,7 +16,7 @@
                     ⚽ GolBet
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                        aria-expanded="false" aria-label="Alternar navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarMain">
@@ -25,7 +25,6 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
                     </ul>
-                    <!-- Aquí irá el enlace a Partidos (Módulo 3) y la sesión (Módulo 7) -->
                 </div>
             </div>
         </nav>
@@ -38,7 +37,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2026 - GolBet.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.Now.Year - GolBet · Simulador académico
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
