@@ -6,6 +6,10 @@ using GolBet.Services.Interfaces;
 using GolBet.Services.Mapping;
 using Microsoft.EntityFrameworkCore;
 
+var culture = new System.Globalization.CultureInfo("es-CO");
+System.Globalization.CultureInfo.DefaultThreadCurrentCulture = culture;
+System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = culture;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -25,6 +29,7 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 // Business services
 builder.Services.AddScoped<IMatchService, MatchService>();
+builder.Services.AddScoped<ITeamService, TeamService>();
 
 var app = builder.Build();
 
