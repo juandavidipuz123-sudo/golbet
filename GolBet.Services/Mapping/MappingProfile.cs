@@ -9,6 +9,10 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        CreateMap<Team, TeamDto>();
+        CreateMap<TeamFormDto, Team>().ReverseMap();
+        CreateMap<MatchFormDto, Match>().ReverseMap();
+
         // Flattening by convention:
         // MatchDto.HomeTeamName  <- Match.HomeTeam.Name
         // MatchDto.AwayTeamCrestUrl <- Match.AwayTeam.CrestUrl
