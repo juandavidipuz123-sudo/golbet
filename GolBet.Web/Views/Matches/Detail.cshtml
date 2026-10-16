@@ -98,6 +98,8 @@
     </div>
 </div>
 
+@if (User.IsInRole("Admin"))
+{
 <div class="d-flex gap-2 mt-3">
     <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-primary">Editar</a>
     <form asp-action="Deactivate" asp-route-id="@Model.Id" method="post"
@@ -105,3 +107,4 @@
         <button type="submit" class="btn btn-outline-danger">Desactivar</button>
     </form>
 </div>
+}
