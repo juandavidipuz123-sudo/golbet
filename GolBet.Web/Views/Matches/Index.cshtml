@@ -16,32 +16,58 @@
 
 @{
     var current = (MatchStatus?)ViewBag.CurrentStatus;
+    var search = (string?)ViewBag.CurrentSearch;
 }
 
+<form asp-action="Index" method="get" class="mb-3">
+    <input type="hidden" name="status" value="@current" />
+    <label for="search" class="form-label">Buscar por equipo</label>
+    <div class="input-group">
+        <input type="search" id="search" name="search" value="@search"
+               class="form-control" placeholder="Nombre del equipo local o visitante" />
+        <button type="submit" class="btn btn-success">Buscar</button>
+    </div>
+</form>
+
 <div class="d-flex gap-2 flex-wrap mb-4">
-    <a asp-action="Index"
+    <a asp-action="Index" asp-route-search="@search"
        class="btn btn-sm @(current is null ? "btn-success" : "btn-outline-success")">
         Todos
     </a>
 
-    <a asp-action="Index"
+    <a asp-action="Index" asp-route-search="@search"
        asp-route-status="@MatchStatus.Scheduled"
        class="btn btn-sm @(current == MatchStatus.Scheduled ? "btn-success" : "btn-outline-success")">
         Programados
     </a>
 
-    <a asp-action="Index"
+    <a asp-action="Index" asp-route-search="@search"
        asp-route-status="@MatchStatus.InProgress"
        class="btn btn-sm @(current == MatchStatus.InProgress ? "btn-success" : "btn-outline-success")">
         En juego
     </a>
 
-    <a asp-action="Index"
+    <a asp-action="Index" asp-route-search="@search"
        asp-route-status="@MatchStatus.Finished"
        class="btn btn-sm @(current == MatchStatus.Finished ? "btn-success" : "btn-outline-success")">
         Finalizados
     </a>
 </div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info" role="status">
+        @if (!string.IsNullOrWhiteSpace(search))
+        {
+            <p>No hay partidos para “@search” con los filtros seleccionados.</p>
+        }
+        else
+        {
+            <p>No hay partidos con el estado seleccionado.</p>
+        }
+        <a asp-action="Index" class="btn btn-outline-success">Volver a la cartelera de partidos</a>
+    </div>
+}
 
 <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
 @foreach (var match in Model)
